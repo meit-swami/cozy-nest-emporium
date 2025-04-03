@@ -24,15 +24,24 @@ const DiscountProductCard = ({ product }: ProductCardProps) => {
     ? Math.round(((product.price - product.salePrice) / product.price) * 100)
     : 0;
   
+  // Use the first image from product or a placeholder
+  const productImage = product.images[0] && product.images[0] !== '/placeholder.svg' 
+    ? product.images[0] 
+    : `https://images.unsplash.com/photo-${1500000000000 + parseInt(product.id.replace(/\D/g, ''), 10) % 1000000000}?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80`;
+  
   return (
     <div className="product-card group">
       <div className="relative">
         <Link to={`/product/${product.id}`}>
           <div className="aspect-square bg-gray-100 overflow-hidden">
             <img 
-              src={product.images[0]} 
+              src={productImage} 
               alt={product.name} 
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
+              }}
             />
           </div>
         </Link>

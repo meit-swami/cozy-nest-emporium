@@ -1,40 +1,56 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react'; // Make sure to import ArrowRight
+import { ArrowRight } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { toast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+
+interface Product {
+  id: number;
+  name: string;
+  imageUrl: string;
+  price: number;
+}
 
 const FeaturedProducts = () => {
   const products = [
     {
       id: 1,
       name: 'Cozy Knit Blanket',
-      imageUrl: 'https://source.unsplash.com/300x200/?blanket',
+      imageUrl: 'https://images.unsplash.com/photo-1580301762809-7f350e5284f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
       price: 49.99,
     },
     {
       id: 2,
       name: 'Soft Throw Pillow',
-      imageUrl: 'https://source.unsplash.com/300x200/?pillow',
+      imageUrl: 'https://images.unsplash.com/photo-1584100936595-c0180b80aaa6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
       price: 24.99,
     },
     {
       id: 3,
       name: 'Comfortable Bed Sheets',
-      imageUrl: 'https://source.unsplash.com/300x200/?bedsheets',
+      imageUrl: 'https://images.unsplash.com/photo-1583845112203-29329902332e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
       price: 79.99,
     },
   ];
 
   const { addToCart } = useCart();
 
-  const handleAddToCart = (product) => {
-    addToCart(product);
+  const handleAddToCart = (product: Product) => {
+    addToCart({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      images: [product.imageUrl],
+      quantity: 1,
+      variant: '',
+    });
+    
     toast({
       title: "Added to cart!",
       description: `${product.name} added to your cart.`,
-    })
+    });
   };
 
   return (
@@ -44,7 +60,7 @@ const FeaturedProducts = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {products.map((product) => (
             <div key={product.id} className="product-card">
-              <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover" />
+              <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover rounded-t-lg" />
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-cozy-dark mb-2">{product.name}</h3>
                 <p className="text-cozy-dark">${product.price.toFixed(2)}</p>

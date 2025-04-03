@@ -28,7 +28,7 @@ const HeroSection = () => {
           <div className="relative">
             <div className="aspect-square md:aspect-[4/3] bg-cozy-sage/20 rounded-2xl overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                 alt="Modern kitchen with CozyNest products"
                 className="w-full h-full object-cover"
               />

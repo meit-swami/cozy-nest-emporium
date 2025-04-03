@@ -5,6 +5,16 @@ import { productCategories } from '@/data/products';
 import { ArrowRight } from 'lucide-react';
 
 const CategorySection = () => {
+  // Map of category IDs to image URLs
+  const categoryImages = {
+    'cookware': 'https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    'appliances': 'https://images.unsplash.com/photo-1574269906084-f80fad427989?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    'storage': 'https://images.unsplash.com/photo-1520981825232-ece5fae45120?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    'dining': 'https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    'decor': 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    'cleaning': 'https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+  };
+  
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -19,7 +29,7 @@ const CategorySection = () => {
             >
               <div className="aspect-[3/2] bg-cozy-cream relative overflow-hidden">
                 <img
-                  src="/placeholder.svg"
+                  src={categoryImages[category.id] || 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'}
                   alt={category.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />

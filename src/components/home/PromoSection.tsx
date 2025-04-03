@@ -72,7 +72,7 @@ const PromoSection = () => {
             </div>
             <div className="relative">
               <img 
-                src="/placeholder.svg" 
+                src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
                 alt="Kitchen essentials collection" 
                 className="w-full h-full object-cover"
               />
